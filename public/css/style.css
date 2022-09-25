@@ -1,0 +1,21 @@
+body{
+    background-color: #E4E9FD;
+    background-image: -webkit-linear-gradient(70deg, #A683E3 50%, #E4E9FD 50%);
+    min-height: 1000px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+header{
+
+    display: inline-block;
+}
+.logoImg{
+  
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+}
+
+h1{
+    
+    display: inline;
+}

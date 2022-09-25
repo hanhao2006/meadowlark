@@ -1,13 +1,22 @@
-const express = require('express')
+const express = require('express') // Introducing the module of express
+const { getFortune } = require('./lib/fun')
 const app = express()
 
 // setting view engine of hadnlebars
 const hadnlebars = require('express-handlebars').create({
   defaultLayout: 'main',
 })
+
+// inctroducing module
+let fortune = require('./lib/fun.js')
+
 app.engine('handlebars', hadnlebars.engine)
 app.set('view engine', 'handlebars')
 app.set('views', './views')
+
+// set static folder
+app.use(express.static(__dirname + '/public'))
+
 // set port
 app.set('port', process.env.PORT || 3000)
 
@@ -17,8 +26,10 @@ app.get('/', function (req, res) {
 })
 
 // about page
-app.get('about', function (req, res) {
-  res.render('about')
+app.get('/about', function (req, res) {
+  let randomFortune = fortune.getFortune()
+
+  res.render('about', { fortune: randomFortune })
 })
 
 // must be below in the process file
