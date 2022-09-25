@@ -6,14 +6,18 @@ const app = express()
 const hadnlebars = require('express-handlebars').create({
   defaultLayout: 'main',
 })
-
-// inctroducing module
-let fortune = require('./lib/fun.js')
-
 app.engine('handlebars', hadnlebars.engine)
 app.set('view engine', 'handlebars')
 app.set('views', './views')
 
+// load testing page
+app.use(function (req, res, next) {
+  res.locals.showTests =
+    app.get('env') !== 'production' && req.query.test === '1'
+  next()
+})
+// inctroducing module
+let fortune = require('./lib/fun.js')
 // set static folder
 app.use(express.static(__dirname + '/public'))
 
@@ -29,7 +33,10 @@ app.get('/', function (req, res) {
 app.get('/about', function (req, res) {
   let randomFortune = fortune.getFortune()
 
-  res.render('about', { fortune: randomFortune })
+  res.render('about', {
+    fortune: randomFortune,
+    pageTestScript: '/qa/tests-about.js',
+  })
 })
 
 // must be below in the process file

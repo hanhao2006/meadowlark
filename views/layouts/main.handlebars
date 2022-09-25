@@ -6,9 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <title>Weadowlark Travel</title>
+    {{#if showTests}}
+        <link rel="stylesheet" href="/vendor/mocha.css">
+    {{/if}}
+   <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 </head>
 <body>
     <header><img class="logoImg" src="/img/logo.png"  alt="Weadowlark Travel Logo"></header>
     {{{body}}}
+    {{#if showTests}}
+    <div id="mocha"></div>
+    <script src="/vendor/mocha.js"></script>
+    <script src="/vendor/chai.js"></script>
+    <script>
+        mocha.ui('tdd')
+        var assert = chai.assert
+    </script>
+    <script src="/qa/tests-global.js"></script>
+        {{#if pageTestScript}}
+        <script src="pageTestScript"></script>
+        {{/if}}
+    <script>mocha.run()</script>
+{{/if}}
 </body>
 </html>
