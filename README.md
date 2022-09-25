@@ -2,7 +2,7 @@
 
 ## Tools
 
-- Handerbars
+- Handlebars
 
 ## Notes
 modle - view - control \
