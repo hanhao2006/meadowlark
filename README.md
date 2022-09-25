@@ -1,4 +1,4 @@
 # meadowlark
 ## Notes
-modle - view - control
+modle - view - control \
 view is show web page to client  
